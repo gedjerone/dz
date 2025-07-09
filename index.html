@@ -88,6 +88,18 @@
             margin: 20px 0;
         }
 
+        .hint-toggle {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
         .task {
             background-color: #f8f9fa;
             border: 1px solid #dee2e6;
@@ -96,12 +108,36 @@
             margin: 15px 0;
         }
 
+        .hint-toggle:hover {
+            background-color: #2980b9;
+        }
+
+        .hint-content {
+            display: none;
+            margin-top: 10px;
+        }
+
         .hint {
             background-color: #fff3cd;
             border: 1px solid #ffeaa7;
             border-radius: 5px;
             padding: 10px;
             margin: 10px 0;
+        }
+
+        .hint-content.show {
+            display: block;
+        }
+
+
+        .arrow {
+            display: inline-block;
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .arrow.rotated {
+            transform: rotate(180deg);
         }
 
         ul,
@@ -448,15 +484,19 @@ person := NewPerson("Alice", 25)</code></pre>
                     <li>В функции <code>main()</code> продемонстрируйте работу всех функций</li>
                 </ol>
 
-                <div class="hint">
+                <button class="hint-toggle" onclick="toggleHint('hint1')">
+                    💡 Показать подсказки <span class="arrow">▼</span>
+                </button>
+                <div class="hint" id="hint1">
                     <h4>Подсказки:</h4>
-                    <p><strong>Шаг 1:</strong> Создайте функцию сложения</p>
-                    <pre><code>func add(a, b float64) float64 {
+                    <div class="hint-content">
+                        <p><strong>Шаг 1:</strong> Создайте функцию сложения</p>
+                        <pre><code>func add(a, b float64) float64 {
     return a + b
 }</code></pre>
 
-                    <p><strong>Шаг 2:</strong> Создайте остальные функции по аналогии</p>
-                    <pre><code>func subtract(a, b float64) float64 {
+                        <p><strong>Шаг 2:</strong> Создайте остальные функции по аналогии</p>
+                        <pre><code>func subtract(a, b float64) float64 {
     // Ваш код
 }
 
@@ -471,8 +511,8 @@ func divide(a, b float64) (float64, error) {
     return a / b, nil
 }</code></pre>
 
-                    <p><strong>Шаг 3:</strong> В main() протестируйте все функции</p>
-                    <pre><code>func main() {
+                        <p><strong>Шаг 3:</strong> В main() протестируйте все функции</p>
+                        <pre><code>func main() {
     fmt.Println("Сложение 5 + 3 =", add(5, 3))
     fmt.Println("Вычитание 10 - 4 =", subtract(10, 4))
     // ... остальные операции
@@ -485,6 +525,7 @@ func divide(a, b float64) (float64, error) {
         fmt.Println("Результат:", result)
     }
 }</code></pre>
+                    </div>
                 </div>
             </div>
 
@@ -500,10 +541,14 @@ func divide(a, b float64) (float64, error) {
                     <li>Протестировать все функции в <code>main()</code></li>
                 </ol>
 
-                <div class="hint">
+                <button class="hint-toggle" onclick="toggleHint('hint2')">
+                    💡 Показать подсказки <span class="arrow">▼</span>
+                </button>
+                <div class="hint" id="hint2">
                     <h4>Подсказки:</h4>
-                    <p><strong>Шаг 1:</strong> Функция поиска максимума</p>
-                    <pre><code>func findMax(numbers []int) int {
+                    <div class="hint-content">
+                        <p><strong>Шаг 1:</strong> Функция поиска максимума</p>
+                        <pre><code>func findMax(numbers []int) int {
     if len(numbers) == 0 {
         return 0 // или можно вернуть ошибку
     }
@@ -517,8 +562,8 @@ func divide(a, b float64) (float64, error) {
     return max
 }</code></pre>
 
-                    <p><strong>Шаг 2:</strong> Функция подсчета суммы</p>
-                    <pre><code>func calculateSum(numbers []int) int {
+                        <p><strong>Шаг 2:</strong> Функция подсчета суммы</p>
+                        <pre><code>func calculateSum(numbers []int) int {
     sum := 0
     for _, num := range numbers {
         sum += num
@@ -526,8 +571,8 @@ func divide(a, b float64) (float64, error) {
     return sum
 }</code></pre>
 
-                    <p><strong>Шаг 3:</strong> Функция фильтрации четных чисел</p>
-                    <pre><code>func filterEven(numbers []int) []int {
+                        <p><strong>Шаг 3:</strong> Функция фильтрации четных чисел</p>
+                        <pre><code>func filterEven(numbers []int) []int {
     var result []int
     for _, num := range numbers {
         if num%2 == 0 { // проверка на четность
@@ -537,8 +582,8 @@ func divide(a, b float64) (float64, error) {
     return result
 }</code></pre>
 
-                    <p><strong>Шаг 4:</strong> Тестирование в main()</p>
-                    <pre><code>func main() {
+                        <p><strong>Шаг 4:</strong> Тестирование в main()</p>
+                        <pre><code>func main() {
     numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
     
     fmt.Println("Исходный слайс:", numbers)
@@ -546,6 +591,7 @@ func divide(a, b float64) (float64, error) {
     fmt.Println("Сумма:", calculateSum(numbers))
     fmt.Println("Четные числа:", filterEven(numbers))
 }</code></pre>
+                    </div>
                 </div>
             </div>
 
@@ -563,34 +609,38 @@ func divide(a, b float64) (float64, error) {
                     <li>Создайте несколько студентов и протестируйте методы</li>
                 </ol>
 
-                <div class="hint">
+                <button class="hint-toggle" onclick="toggleHint('hint3')">
+                    💡 Показать подсказки <span class="arrow">▼</span>
+                </button>
+                <div class="hint" id="hint3">
                     <h4>Подсказки:</h4>
-                    <p><strong>Шаг 1:</strong> Определите структуру</p>
-                    <pre><code>type Student struct {
+                    <div class="hint-content">
+                        <p><strong>Шаг 1:</strong> Определите структуру</p>
+                        <pre><code>type Student struct {
     Name     string
     Age      int
     Course   int
     GPA      float64 // средний балл
 }</code></pre>
 
-                    <p><strong>Шаг 2:</strong> Метод для вывода информации</p>
-                    <pre><code>func (s Student) GetInfo() string {
+                        <p><strong>Шаг 2:</strong> Метод для вывода информации</p>
+                        <pre><code>func (s Student) GetInfo() string {
     return fmt.Sprintf("Студент: %s, Возраст: %d, Курс: %d, Средний балл: %.2f", 
         s.Name, s.Age, s.Course, s.GPA)
 }</code></pre>
 
-                    <p><strong>Шаг 3:</strong> Метод проверки на отличника</p>
-                    <pre><code>func (s Student) IsExcellent() bool {
+                        <p><strong>Шаг 3:</strong> Метод проверки на отличника</p>
+                        <pre><code>func (s Student) IsExcellent() bool {
     return s.GPA >= 4.5
 }</code></pre>
 
-                    <p><strong>Шаг 4:</strong> Метод перевода на следующий курс</p>
-                    <pre><code>func (s *Student) NextCourse() {
+                        <p><strong>Шаг 4:</strong> Метод перевода на следующий курс</p>
+                        <pre><code>func (s *Student) NextCourse() {
     s.Course++
 }</code></pre>
 
-                    <p><strong>Шаг 5:</strong> Тестирование в main()</p>
-                    <pre><code>func main() {
+                        <p><strong>Шаг 5:</strong> Тестирование в main()</p>
+                        <pre><code>func main() {
     student1 := Student{
         Name:   "Иван Петров",
         Age:    20,
@@ -604,6 +654,7 @@ func divide(a, b float64) (float64, error) {
     student1.NextCourse()
     fmt.Println("После перевода:", student1.GetInfo())
 }</code></pre>
+                    </div>
                 </div>
             </div>
 
@@ -621,10 +672,14 @@ func divide(a, b float64) (float64, error) {
                     <li>Протестируйте работу адресной книги</li>
                 </ol>
 
-                <div class="hint">
+                <button class="hint-toggle" onclick="toggleHint('hint4')">
+                    💡 Показать подсказки <span class="arrow">▼</span>
+                </button>
+                <div class="hint" id="hint4">
                     <h4>Подсказки:</h4>
-                    <p><strong>Шаг 1:</strong> Определите структуры</p>
-                    <pre><code>type Contact struct {
+                    <div class="hint-content">
+                        <p><strong>Шаг 1:</strong> Определите структуры</p>
+                        <pre><code>type Contact struct {
     Name  string
     Phone string
     Email string
@@ -634,14 +689,14 @@ type AddressBook struct {
     Contacts []Contact
 }</code></pre>
 
-                    <p><strong>Шаг 2:</strong> Метод добавления контакта</p>
-                    <pre><code>func (ab *AddressBook) AddContact(contact Contact) {
+                        <p><strong>Шаг 2:</strong> Метод добавления контакта</p>
+                        <pre><code>func (ab *AddressBook) AddContact(contact Contact) {
     ab.Contacts = append(ab.Contacts, contact)
     fmt.Printf("Контакт %s добавлен\n", contact.Name)
 }</code></pre>
 
-                    <p><strong>Шаг 3:</strong> Метод поиска контакта</p>
-                    <pre><code>func (ab AddressBook) FindContact(name string) *Contact {
+                        <p><strong>Шаг 3:</strong> Метод поиска контакта</p>
+                        <pre><code>func (ab AddressBook) FindContact(name string) *Contact {
     for i, contact := range ab.Contacts {
         if contact.Name == name {
             return &ab.Contacts[i]
@@ -650,8 +705,8 @@ type AddressBook struct {
     return nil
 }</code></pre>
 
-                    <p><strong>Шаг 4:</strong> Метод вывода всех контактов</p>
-                    <pre><code>func (ab AddressBook) PrintAllContacts() {
+                        <p><strong>Шаг 4:</strong> Метод вывода всех контактов</p>
+                        <pre><code>func (ab AddressBook) PrintAllContacts() {
     fmt.Println("Все контакты:")
     for _, contact := range ab.Contacts {
         fmt.Printf("Имя: %s, Телефон: %s, Email: %s\n", 
@@ -659,8 +714,8 @@ type AddressBook struct {
     }
 }</code></pre>
 
-                    <p><strong>Шаг 5:</strong> Тестирование в main()</p>
-                    <pre><code>func main() {
+                        <p><strong>Шаг 5:</strong> Тестирование в main()</p>
+                        <pre><code>func main() {
     book := AddressBook{}
     
     // Добавляем контакты
@@ -687,6 +742,7 @@ type AddressBook struct {
         fmt.Println("Контакт не найден")
     }
 }</code></pre>
+                    </div>
                 </div>
             </div>
 
@@ -703,24 +759,11 @@ type AddressBook struct {
                 <strong>Совет:</strong> Решайте задачи по порядку. Если что-то не получается, пропустите и вернитесь
                 позже. Главное - понять принципы работы с функциями и структурами!
             </div>
-
-            <h3>Требования к выполнению</h3>
-            <ol>
-                <li>Создайте отдельные файлы для каждой задачи</li>
-                <li>Добавьте подробные комментарии к коду</li>
-                <li>Обработайте возможные ошибки</li>
-                <li>Напишите функцию main() для демонстрации работы</li>
-                <li>Протестируйте код с различными входными данными</li>
-            </ol>
-
-            <div class="note">
-                <strong>Совет:</strong> Начните с простых функций и постепенно усложняйте. Не забывайте тестировать
-                каждую функцию отдельно перед переходом к следующей!
-            </div>
         </div>
 
         <h2>🚀 Заключение</h2>
-        <p>Функции и структуры - это основа объектно-ориентированного программирования в Go. Понимание этих концепций
+        <p>Функции и структуры - это основа объектно-ориентированного программирования в Go. Понимание этих
+            концепций
             поможет вам создавать более организованный, читаемый и поддерживаемый код.</p>
 
         <p><strong>Ключевые моменты для запоминания:</strong></p>
@@ -730,3 +773,24 @@ type AddressBook struct {
             <li>Методы привязывают функциональность к типам данных</li>
             <li>Указатели позволяют изменять исходные данные</li>
             <li>Go поддерживает функции высшего порядка и замыкания</li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+    function toggleHint(hintId) {
+        const hint = document.getElementById(hintId);
+        const content = hint.querySelector('.hint-content');
+        const button = hint.previousElementSibling;
+        const arrow = button.querySelector('.arrow');
+
+        if (content.classList.contains('show')) {
+            content.classList.remove('show');
+            button.innerHTML = '💡 Показать подсказки <span class="arrow">▼</span>';
+        } else {
+            content.classList.add('show');
+            button.innerHTML = '💡 Скрыть подсказки <span class="arrow rotated">▼</span>';
+        }
+    }
+</script>
